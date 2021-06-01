@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+{% block title %}Closed{% endblock %}
+{% block body %}
+	<div style="font-size: 20px; height: 100px; background-color: lightyellow, font-color: blue;">
+		{% if winner_msg %}
+			{{winner_msg}}
+		{% elif success_msg %}
+			{{success_msg}}
+		{% else %}
+			Sorry The Bid is closed!
+		{% endif %}
+		Go back To<a href="{% url 'index' %}"> Main Page</a>
+	</div>
+{% endblock %}

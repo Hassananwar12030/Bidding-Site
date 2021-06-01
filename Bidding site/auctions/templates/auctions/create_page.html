@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+{% block title %}Create Page{% endblock %}
+{% block body %}
+    <h2 style="padding-left: 39%; font-family: arial, sans-sarif;">Create Page</h2>
+    <div class="form-group">
+        <form action="{% url 'create_page' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+   				<div class="form-group col-md-8" style="padding-left: 25%; font-family: arial; font-weight: bold;">
+            		{{ form.as_p }}
+            	</div>
+            <div style="padding-left: 25%;">
+            	<input class="btn btn-primary" type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

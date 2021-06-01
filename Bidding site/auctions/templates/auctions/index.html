@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+{% if heading %}
+    {% block title %}{{heading}}{% endblock %}
+{% endif %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    <div style="height: 10px;"></div>
+    {% if heading %}
+        <div style="height: 1px; background-color: lightgray;"></div>
+        <div style="height: 10px;"></div>
+        <div>
+           <h3>Category: <i>"{{heading}}"</i> </h3>
+        </div>
+        <div style="height: 10px;"></div>
+    {% endif %}
+    <div style="height: 1px; background-color: lightgray;"></div>
+    <div style="height: 10px;"></div>
+    <div class="card-columns">
+    	{% for item in items %}
+            <div class="card">
+                <img class="card-img-top" src="{{ media_url }}{{ item.picture_item }}" alt="No image found">
+                <div class="card-body">
+                    <a href="{% url 'list_page' item.id %}" class="btn btn-primary">{{item.title}}</a>
+                    {% if item.closed %}
+                        <h5 style="background-color:#fc9f9f;width: 100px;border: 1px solid black;padding: 5px;margin-top: 10px; text-align: center; border-radius: 4px; color: #664e4e;">closed</h5>
+                    {% else %}
+                        <h5 style="margin-top: 8px;" class="card-title">{{item.bidPrice}}$</h5>
+                        <p class="card-text">{{item.description}}</p>
+                    {% endif %}
+    		    </div>
+            </div>
+            {% empty %}
+                <ul><li style="font-size: 25px;">None</li></ul>
+	    {% endfor %}
+    </div>
+{% endblock %}
